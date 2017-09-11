@@ -1,4 +1,4 @@
 # tipoff
-September 10, 2017
+Created on September 10, 2017
 
-View the latest run at http://htmlpreview.github.io/?https://github.com/ptiger10/tipoff/blob/master/DogDashboard.html
+View the latest run by clicking on the DogDashboard.ipynb file above.
