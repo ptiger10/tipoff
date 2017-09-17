@@ -80,6 +80,7 @@ class NOAA_API(object):
         self.original_params = self.params
             
     def set_params(self):
+        '''Change the dictionary linked to the self.params object'''
         param_values = {}    
         for parameter in self.param_fields:
             if hasattr(self, parameter):
@@ -116,7 +117,7 @@ class NOAA_API(object):
             return response
         
     def fetch_page_into_df(self):
-        '''returns spreadsheet of results (up to first 1000)'''
+        '''Returns spreadsheet of results (up to first 1000)'''
         
         response = self.fetch_page(print_json=False)
         try:
@@ -165,7 +166,11 @@ class Temp_API(NOAA_API):
         params:
         ------
         datasetid (str): GHCND (Global Historical Climatology Network Daily Summary) dataset
-        - #https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt'''
+        - #https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt
+        units (str): standard -> fahrenheit and non-metric units
+        limit (str): 1000 -> API requests will return first 1000 results (max)
+        '''
+        
         self.datasetid = 'GHCND'
         self.units = 'standard'
         self.limit = '1000'
@@ -187,9 +192,9 @@ class Temp_API(NOAA_API):
         return average_temp_stats
 
     def get_current_temps(self):
-        '''returns
+        '''returns:
         ----------
-        current_average_temp (Series): average temperature values within location id on reference date 
+        current_average_temps (Series): average temperature values within location id on reference date 
             - index: stationid'''
         if not hasattr(self, 'reference_date'):
             self.set_reference_date()
@@ -250,7 +255,8 @@ class Temp_API(NOAA_API):
         standard_deviation = station_stats.loc['std TAVG on {}'.format(date.strftime('%m-%d'))]
     
         result_narrative = '''
-        The CA location with the most unusual weather on {} was {} Station. 
+        The CA location with the most unusual weather on {} was: 
+        {} Station. 
         The average temperature that day was {}°F, {} than usual.
         The temperature was {}x more unusual than the past {} years of historical precedent.
         
@@ -315,7 +321,7 @@ def visualize_result(start_year='1986', locationid='FIPS:06', debug=False):
         return resource
 
 
-# In[24]:
+# In[58]:
 
 # !jupyter nbconvert --to=python Weather.ipynb --output=WeatherComputron.py
 
