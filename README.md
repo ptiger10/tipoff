@@ -3,7 +3,7 @@
 
 TipOff is a Python 3-based, Github-hosted, self-updating web app that identifies and profiles the location in California experiencing the most unusual weather activity every day.
 
-For best viewing experience, open the .ipynb file on a desktop computer. To view on a mobile device, open the .html file.
+For best viewing experience, open the .ipynb file on a desktop computer. To view on a mobile device, open the .html file [here](https://htmlpreview.github.io/?https://github.com/ptiger10/tipoff/blob/master/CA-Climate-Dashboard.html).
 
 **Technologies involved:**
 - AWS EC2 instance running Amazon Linux (remote computing)
